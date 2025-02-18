@@ -54,6 +54,7 @@ Download all compressed files and upload to the terminal, and decompressed throu
 ### **B2. Free Energy Calculations**  
 
 1. **MM/PBSA & MM/GBSA Calculations**  
+   - Move all sub-folders from `MD` path to `input` here.
    - Run in batch mode on **CPU** (Working Directory: `MMPBSA`):  
      ```bash
      sbatch rmsd-gmxmmpbsa.sh
