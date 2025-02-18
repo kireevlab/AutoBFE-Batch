@@ -11,6 +11,7 @@
 5. gmx_MMPBSA v1.6.x
 
 ## **A. Preprocessing**  
+Download all compressed files and upload to the terminal, and decompressed through: `tar -zxvf filenamehere.tar.gz`
 
 ### **A1. Ligand Parameterization (Working Directory: `LigPara`)**  
 1. **Generate ESP Charges**  
@@ -21,7 +22,7 @@
    - **Note:** It is recommended to group ligands with the same net charge into a single SDF file. Here, `0` represents the net charge of the system. 
 
 2. **Perform RESP Charge Fitting**  
-   - After the ESP calculation is complete, go to the `RESP` folder and run:  
+   - After the ESP calculation is complete, move all *.log files into `RESP` folder then go to the `RESP` folder and run:  
      ```bash
      sbatch submit_resp.sh
      ```
@@ -32,6 +33,7 @@
    - Save prepared protein structures into the `prepared_proteins/` directory.  
 
 2. **Generate Complex Structures & Topology Files in Batch Mode**  
+   - Move all newly generated sub-folders from `RESP` here.
    - Run the following command:  
      ```bash
      sbatch submit_proteintop.sh
@@ -43,6 +45,7 @@
 ## **B. MD Simulation & Free Energy Calculation**  
 
 ### **B1. Molecular Dynamics (MD) Simulation**  
+- Move all newly generated sub-folders from `ProtPara` here.
 - Submit MD simulations in batch mode on **GPU** (Working Directory: `MD`):  
   ```bash
   sbatch Gpu-submit.sh
