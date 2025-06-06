@@ -14,18 +14,12 @@
 Download all compressed files and upload to the terminal, and decompressed through: `tar -zxvf filenamehere.tar.gz`
 
 ### **A1. Ligand Parameterization (Working Directory: `LigPara`)**  
-1. **Generate ESP Charges**  
-   - Open a terminal and navigate to the `ESP` folder and run:  
+1. **Generate RESP Charges and GAFF**  
+   - Open a terminal and navigate to the `LigPara` folder and run:  
      ```bash
-     ./submit_esp.sh PDBbind_db_ligands.sdf 0
+     ./submit_LigPara.sh PDBbind_db_ligands.sdf 0
      ```  
    - **Note:** It is recommended to group ligands with the same net charge into a single SDF file. Here, `0` represents the net charge of the system. 
-
-2. **Perform RESP Charge Fitting**  
-   - After the ESP calculation is complete, move all *.log files into `RESP` folder then go to the `RESP` folder and run:  
-     ```bash
-     sbatch submit_resp.sh
-     ```
 
 ### **A2. Protein Parameterization (Working Directory: `ProtPara`)**  
 1. **Prepare Protein Structures**  
@@ -48,7 +42,7 @@ Download all compressed files and upload to the terminal, and decompressed throu
 - Move all newly generated sub-folders from `ProtPara` here.
 - Submit MD simulations in batch mode on **GPU** (Working Directory: `MD`):  
   ```bash
-  sbatch Gpu-submit.sh
+  sbatch submit_MD.sh
   ```
 
 ### **B2. Free Energy Calculations**  
@@ -57,13 +51,13 @@ Download all compressed files and upload to the terminal, and decompressed throu
    - Move all sub-folders from `MD` path to `input` here.
    - Run in batch mode on **CPU** (Working Directory: `MMPBSA`):  
      ```bash
-     sbatch rmsd-gmxmmpbsa.sh
+     sbatch submit_mmpbsa.sh
      ```
 
 2. **Alchemical Free Energy Calculations (FEP)**  
    - Submit Free Energy Perturbation (FEP) calculations (Working Directory: `FEP`):  
      ```bash
-     sbatch FEP-submit.sh
+     sbatch submit_FEP.sh
      ```  
    - Run **BAR (Bennett Acceptance Ratio) Analysis**:  
      ```bash
